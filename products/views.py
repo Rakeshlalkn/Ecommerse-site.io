@@ -5,8 +5,8 @@ from django.http import JsonResponse
 from .models import Category, Subcategory, Product
 from .forms import ProductForm,SubcategoryForm,CategoryForm
 from django.shortcuts import get_object_or_404, redirect
-from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import ObjectDoesNotExist
+from django.utils.decorators import method_decorator
+from django.contrib.admin.views.decorators import staff_member_required
 
 class ProductListView(View):
     template_name = 'product_list.html'
@@ -42,6 +42,7 @@ class ProductListView(View):
 
         return render(request, self.template_name, context)
     
+@method_decorator(staff_member_required, name='dispatch')
 class ItemsListView(View):
     template_name = 'items_list.html'
 
@@ -56,6 +57,7 @@ class ItemsListView(View):
         }
         return render(request, self.template_name, context)
     
+@method_decorator(staff_member_required, name='dispatch')
 class CategoryCreateView(View):
     template_name = 'category_form.html'
 
@@ -71,6 +73,7 @@ class CategoryCreateView(View):
         return render(request, self.template_name, {'form': form})
     
 
+@method_decorator(staff_member_required, name='dispatch')
 class SubcategoryCreateView(View):
     template_name = 'subcategory_form.html'
 
@@ -87,7 +90,7 @@ class SubcategoryCreateView(View):
 
     
 
-
+@method_decorator(staff_member_required, name='dispatch')
 class ProductCreateView(View):
     template_name = 'product_form.html'
 
