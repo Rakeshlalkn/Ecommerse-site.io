@@ -1,0 +1,60 @@
+{% extends 'users/base.html' %}
+{% block content %}
+<div style="padding: 120px;">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h1 class="card-title">Categories</h1>
+          <h4>
+            <ul>
+            {% for category in categories %}
+              <li>{{ category.name }}</li>
+            {% empty %}
+              <li>No categories yet.</li>
+            {% endfor %}
+            </ul>
+            </h4>
+          <a href="{% url 'category_create' %}" class="btn btn-primary">Create Category</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h1 class="card-title">Sub Category</h1>
+          <h4>
+            <ul>
+            {% for subcategories in subcategories %}
+              <li>{{ subcategories.name }}</li>
+            {% empty %}
+              <li>No subcategories yet.</li>
+            {% endfor %}
+            </ul>
+            </h4>
+          <a href="{% url 'subcategory_create' %}" class="btn btn-primary">Create Category</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h1 class="card-title">Products</h1>
+          <h4>
+            <ul>
+            {% for products in products %}
+              <li>{{ products.name }}</li>
+            {% empty %}
+              <li>No products yet.</li>
+            {% endfor %}
+            </ul>
+            </h4>
+          <a href="{% url 'product_create' %}" class="btn btn-primary">Create Category</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

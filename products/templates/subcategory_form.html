@@ -1,9 +1,11 @@
 {% extends 'users/base.html' %}
 {% block content %}
-<h1>Create Subcategory</h1>
+<div class="container">
+<h1 class="pt-5">Create Subcategory</h1>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Create</button>
 </form>
+</div>
 {% endblock %}

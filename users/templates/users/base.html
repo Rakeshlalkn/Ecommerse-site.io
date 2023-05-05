@@ -44,22 +44,21 @@
     </button>
 
 
-    <div class="float-right collapse navbar-collapse" id="navbarSupportedContent" style="padding-left: 1050px;">
+    <div class="float-right collapse navbar-collapse" id="navbarSupportedContent" style="padding-left: 950px;">
 
       <ul class=" navbar-nav my-2 my-lg-0">
         {% if user.is_authenticated %}
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'category_list' %}">Create Category<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url 'product_list' %}">Products <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'subcategory_list' %}">Create Subcategory<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'product_create' %}">Create Product<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'logout' %}">Logout<span class="sr-only">(current)</span></a>
-        </li>
+          {% if user.is_superuser %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'item_list' %}">Product Configuration<span class="sr-only">(current)</span></a>
+            </li>
+          {% endif %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'logout' %}">Logout<span class="sr-only">(current)</span></a>
+          </li>
         {% else %}
         <li class="nav-item active">
           <a class="nav-link" href="/signup">Signup<span class="sr-only">(current)</span></a>
