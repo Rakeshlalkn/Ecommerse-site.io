@@ -1,0 +1,66 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-3" style="padding: 50px;">
+            <h3>Filter</h3>
+            <form id="filter-form" method="GET">
+              <div class="form-group">
+                <label for="category">Category</label>
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="category_all" name="category_all" {% if not selected_category and not selected_subcategory %}checked{% endif %}>
+                            <label class="form-check-label" for="category_all">All categories</label>
+                        </div>
+                    </li>
+                    {% for category in categories %}
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="{{ category.name }}" name="category" value="{{ category.name }}" {% if category.name == selected_category %}checked{% endif %}>
+                                <label class="form-check-label" for="{{ category.name }}">{{ category.name }}</label>
+                            </div>
+                            <ul>
+                                {% for subcategory in category.subcategory_set.all %}
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="{{ subcategory.name }}" name="subcategory" value="{{ subcategory.name }}" {% if subcategory.name == selected_subcategory %}checked{% endif %}>
+                                            <label class="form-check-label" for="{{ subcategory.name }}">{{ subcategory.name }}</label>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-9" style="padding: 50px;">
+        <div id="product-list">
+            {% include 'ajax_product_list.html' %}
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            $('#filter-form').on('submit', function(e) {
+                e.preventDefault();
+                var category = $('#category').val();
+                var subcategory = $('#subcategory').val();
+                $.ajax({
+                    type: 'GET',
+                    url: '{% url "product_list" %}',
+                    data: {
+                        'category': category,
+                        'subcategory': subcategory
+                    },
+                    success: function(data) {
+                        $('#product-list').html(data.product_list);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

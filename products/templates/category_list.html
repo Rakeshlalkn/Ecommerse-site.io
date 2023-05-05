@@ -1,0 +1,14 @@
+{% extends 'users/base.html' %}
+{% block content %}
+<div class="container">
+<h1>Categories</h1>
+<ul>
+{% for category in categories %}
+  <li>{{ category.name }}</li>
+{% empty %}
+  <li>No categories yet.</li>
+{% endfor %}
+</ul>
+<a href="{% url 'category_create' %}">Create Category</a>
+</div>
+{% endblock %}
