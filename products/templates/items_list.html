@@ -9,7 +9,9 @@
           <h4>
             <ul>
             {% for category in categories %}
-              <li>{{ category.name }}</li>
+              <li>{{ category.name }}<form action="{% url 'delete_item' table='category' pk=category.pk %}" method="post">{% csrf_token %}
+        <input type="submit" value="Delete">
+    </form></li>
             {% empty %}
               <li>No categories yet.</li>
             {% endfor %}
@@ -26,7 +28,9 @@
           <h4>
             <ul>
             {% for subcategories in subcategories %}
-              <li>{{ subcategories.name }}</li>
+              <li>{{ subcategories.name }}<form action="{% url 'delete_item' table='subcategories' pk=subcategories.pk %}" method="post">{% csrf_token %}
+        <input type="submit" value="Delete">
+    </form</li>
             {% empty %}
               <li>No subcategories yet.</li>
             {% endfor %}
@@ -43,7 +47,10 @@
           <h4>
             <ul>
             {% for products in products %}
-              <li>{{ products.name }}</li>
+              <li>{{ products.name }}
+              <form action="{% url 'delete_item' table='products' pk=products.pk %}" method="post">{% csrf_token %}
+        <input type="submit" value="Delete">
+    </form</li>
             {% empty %}
               <li>No products yet.</li>
             {% endfor %}
