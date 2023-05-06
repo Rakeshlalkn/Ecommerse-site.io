@@ -16,11 +16,12 @@ class SubcategoryForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price', 'subcategory','image']
+        fields = ['name', 'description', 'price', 'subcategory', 'category','image']
         labels = {
             'name': 'Product Name',
             'description': 'Product Description',
             'price': 'Product Price',
             'subcategory': 'Subcategory',
+            'category': 'Category',
             'image': 'Image'
         }
