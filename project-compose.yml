@@ -15,7 +15,7 @@ services:
     container_name: django-container
     build: .
     image: myprjct-django
-    command: python manage.py runserver 13.53.218.20:8002
+    command: python manage.py runserver 0.0.0.0:8002
     volumes:
       - .:/code
     ports:
