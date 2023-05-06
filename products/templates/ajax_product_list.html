@@ -1,10 +1,7 @@
-<div class="row">
+<div class="row card-deck">
     {% for product in products %}
-    {% if forloop.counter0|divisibleby:2 %}
-      </div><div class="row">
-    {% endif %}
     <div class="col-md-4">
-        <div class="card mb-4 box-shadow custom-card">
+        <div class="card mb-4 box-shadow">
             {% if product.image %}
                 <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
             {% else %}
@@ -22,7 +19,7 @@
             </div>
         </div>
     </div>
-{% empty %}
-    <p>No products found.</p>
-{% endfor %}
+    {% empty %}
+        <p>No products found.</p>
+    {% endfor %}
 </div>
