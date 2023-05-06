@@ -1,5 +1,6 @@
 from django import forms
 from .models import Category, Subcategory, Product
+from django.forms import CheckboxSelectMultiple
 
 class CategoryForm(forms.ModelForm):
     class Meta:
