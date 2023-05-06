@@ -25,3 +25,7 @@ class ProductForm(forms.ModelForm):
             'category': 'Category',
             'image': 'Image'
         }
+        widgets = {
+            'categories': CheckboxSelectMultiple(),
+            'subcategory': CheckboxSelectMultiple(),
+        }
