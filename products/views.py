@@ -69,7 +69,7 @@ class CategoryCreateView(View):
         form = CategoryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('category_list')
+            return redirect('item_list')
         return render(request, self.template_name, {'form': form})
     
 
@@ -85,7 +85,7 @@ class SubcategoryCreateView(View):
         form = SubcategoryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('subcategory_list')
+            return redirect('item_list')
         return render(request, self.template_name, {'form': form})
 
     
