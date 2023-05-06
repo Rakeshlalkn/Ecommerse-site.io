@@ -1,11 +1,11 @@
 <div class="row card-deck">
     {% for product in products %}
     <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
+        <div class="card mb-4 box-shadow" style="height: 400px; width: 100%;">
             {% if product.image %}
-                <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+                <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}" style="height: 100%; width: 100%; object-fit: cover;">
             {% else %}
-                <img class="card-img-top" src="https://www.agrimart.in/uploads/vendor_logo_image/default.jpg" alt="{{ product.name }}">
+                <img class="card-img-top" src="https://www.agrimart.in/uploads/vendor_logo_image/default.jpg" alt="{{ product.name }}" style="height: 100%; width: 100%; object-fit: cover;">
             {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ product.name }}</h5>
