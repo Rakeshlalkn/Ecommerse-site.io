@@ -104,3 +104,19 @@ class ProductCreateView(View):
             form.save()
             return redirect('product_list')
         return render(request, self.template_name, {'form': form})
+    
+    
+def delete_item(request, table, pk):
+    if table == 'category':
+        item = get_object_or_404(Category, pk=pk)
+    elif table == 'subcategory':
+        item = get_object_or_404(SubCategory, pk=pk)
+    elif table == 'product':
+        item = get_object_or_404(Product, pk=pk)
+    else:
+        # handle invalid table name here
+        pass
+
+    if request.method == 'POST':
+        item.delete()
+    return redirect('item_list')
